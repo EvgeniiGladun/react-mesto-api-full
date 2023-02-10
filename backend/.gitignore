@@ -8,6 +8,8 @@ node_modules
 
 # Optional npm cache directory
 .npm
+
+# production
 .env
 
 # Optional REPL history
