@@ -6,6 +6,6 @@
 
 ---
 
-IP 84.201.141.11
-Frontend https://photograms.nomoredomainsclub.ru/
-Backend https://api.photograms.nomoredomainsclub.ru/
+* IP 84.201.141.11
+* Frontend https://photograms.nomoredomainsclub.ru/
+* Backend https://api.photograms.nomoredomainsclub.ru/
