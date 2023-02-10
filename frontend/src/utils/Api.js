@@ -115,7 +115,7 @@ class Api {
 
 // Делаем запрос по api для получения информации
 const api = new Api({
-  baseUrl: "http://localhost:3500",
+  baseUrl: "https://api.photograms.nomoredomainsclub.ru",
   credentials: "include",
   headers: {
     "Content-Type": "application/json",

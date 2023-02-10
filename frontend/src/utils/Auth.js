@@ -80,7 +80,7 @@ class Auth {
 
 // Делаем запрос по api для получения информации
 const auth = new Auth({
-  baseUrl: "http://localhost:3500",
+  baseUrl: "https://api.photograms.nomoredomainsclub.ru",
   credentials: "include",
   headers: {
     "Content-Type": "application/json",
