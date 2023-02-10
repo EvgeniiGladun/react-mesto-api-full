@@ -13,10 +13,11 @@ const {
   NOT_FOUND_PAGE,
   SERVER_ERROR,
   INTERNAL_SERVER_ERROR_MESSAGE,
+  allowedCors,
 } = require('./constants');
 const { auth } = require('./middlewares/auth');
 
-const { login, createUser } = require('./controllers/users');
+const { login, logOut, createUser } = require('./controllers/users');
 const NotFoundError = require('./errors/NotFoundError');
 
 mongoose.connect('mongodb://localhost:27017/mestodb');
@@ -31,6 +32,33 @@ app.use(cookieParser());
 
 // Подключение логгеров
 app.use(requestLogger);
+
+// прохождение CORS защиты
+app.use((req, res, next) => {
+  const { method } = req;
+  const { origin } = req.headers;
+  const requestHeaders = req.headers['access-control-request-headers'];
+  const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
+
+  if (allowedCors.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Credentials', true);
+  }
+  if (method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Headers', requestHeaders);
+    res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
+    return res.end();
+  }
+
+  return next();
+});
+
+// если работа сервера упадет, то он восстановится
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new SERVER_ERROR('Сервер сейчас упадёт');
+  }, 0);
+});
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({
@@ -57,6 +85,7 @@ app.post('/signup', celebrate({
     password: Joi.string().min(8).required(),
   }).unknown(true),
 }), createUser);
+app.get('/logout', logOut);
 
 app.use(auth);
 app.use('/users', users);

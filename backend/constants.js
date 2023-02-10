@@ -1,8 +1,6 @@
 // Массив доменов, с которых разрешены кросс-доменные запросы
 const allowedCors = [
-  'photograms.nomoredomainsclub.ru',
-  'localhost:3000',
-  'localhost:3500',
+  'https://photograms.nomoredomainsclub.ru',
 ];
 
 // Коды ошибок
