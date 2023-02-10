@@ -4,6 +4,7 @@
 
 ---
 
+<<<<<<< HEAD
 IP 84.201.141.11
 Frontend https://photograms.nomoredomainsclub.ru/
 Backend https://api.photograms.nomoredomainsclub.ru/
@@ -109,3 +110,8 @@ _Что сделали по проекту?_
 5. Теперь можно найти наш сайт быстрее по домену [`photograms.nomoredomainsclub.ru`](https://photograms.nomoredomainsclub.ru/) или просто **photograms**
 6. Ваша сессия защищена протоколом _HTTPS_ ваши данные шифруются и их не смогут прочитать злоумышленники
 7. И многое другое в разделе безопасности было выполнено работ.
+=======
+* IP 84.201.141.11
+* Frontend https://photograms.nomoredomainsclub.ru/
+* Backend https://api.photograms.nomoredomainsclub.ru/
+>>>>>>> 3cff2aff27abadb13d1be0b38430e43c4e8ebbaf
