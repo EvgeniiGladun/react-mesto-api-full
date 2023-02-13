@@ -47,20 +47,17 @@ function App() {
   // Проверка JWT ключа в файлах пользвоателя
   React.useEffect(() => {
 
-    const RegExp = /false|true/ig;
-    const jwtValid = document.cookie.match(RegExp) || false;
-    if (jwtValid[0] === 'true') {
-      auth
-        .getAuthenticationUser()
-        .then((res) => {
-          if (res) {
+    // Если есть токен, авторизируем
+    auth
+      .getAuthenticationUser()
+      .then((res) => {
+        if (res) {
 
-            setLoggedIn(true);
-            setHeaderEmail(res.email);
-            history.push('/');
-          }
-        }).catch((err) => console.log(err));
-    }
+          setLoggedIn(true);
+          setHeaderEmail(res.email);
+          history.push('/');
+        }
+      }).catch((err) => console.log(`Вы не авторизованы, ${err}`));
   }
     , [])
 

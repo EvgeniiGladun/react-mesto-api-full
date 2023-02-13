@@ -1,4 +1,3 @@
-const RegExps = /https?:\/\/\w+\b#?/;
 require('dotenv').config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
@@ -14,6 +13,7 @@ const {
   SERVER_ERROR,
   INTERNAL_SERVER_ERROR_MESSAGE,
   allowedCors,
+  RegExpUrl,
 } = require('./constants');
 const { auth } = require('./middlewares/auth');
 
@@ -71,20 +71,17 @@ app.post('/signup', celebrate({
   body: Joi.object().keys({
     name: Joi.string()
       .min(2)
-      .max(30)
-      .default('Жак-Ив Кусто'),
+      .max(30),
     about: Joi.string()
       .min(2)
-      .max(30)
-      .default('Исследователь'),
+      .max(30),
     avatar: Joi.string()
       .min(2)
       .max(30)
-      .default('https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png')
-      .pattern(RegExps),
+      .pattern(RegExpUrl),
     email: Joi.string().required().email(),
     password: Joi.string().min(8).required(),
-  }).unknown(true),
+  }),
 }), createUser);
 app.get('/logout', logOut);
 
@@ -92,16 +89,16 @@ app.use(auth);
 app.use('/users', users);
 app.use('/cards', cards);
 
+// Обработка несуществующей страницы
+app.use((req, res, next) => {
+  next(new NotFoundError(NOT_FOUND_PAGE));
+});
+
 // Подключение логгера ошибок
 app.use(errorLogger);
 
 // Обработка ошибок модуля 'Joi'
 app.use(errors());
-
-// Обработка несуществующей страницы
-app.use((req, res, next) => {
-  next(new NotFoundError(NOT_FOUND_PAGE));
-});
 
 // Центральный обработчик ошибок
 app.use((err, req, res, next) => {
