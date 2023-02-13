@@ -36,6 +36,7 @@ function EditProfilePopup(props) {
   return (
     <div onSubmit={handleSubmit}>
       <PopupWithForm
+        propagation={props.propagation}
         isOpen={props.isOpenEditProfile}
         title="Редактировать профиль"
         buttonText={props.btnText}

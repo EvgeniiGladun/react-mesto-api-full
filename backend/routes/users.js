@@ -1,4 +1,4 @@
-const RegExp = /https?:\W+/;
+const RegExp = /https?:\/\/\w+\b#?/;
 const users = require('express').Router();
 const { Joi, celebrate, errors } = require('celebrate');
 

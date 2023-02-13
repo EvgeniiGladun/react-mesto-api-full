@@ -64,6 +64,7 @@ function Login({ onLogin, ...props }) {
             id="password-entrance-input"
             type="password"
             name="password"
+            minLength="8"
             placeholder="Пароль"
             required
           />

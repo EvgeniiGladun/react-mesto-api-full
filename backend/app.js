@@ -56,6 +56,7 @@ app.use((req, res, next) => {
 // если работа сервера упадет, то он восстановится
 app.get('/crash-test', () => {
   setTimeout(() => {
+    console.log('Сервер сейчас упадёт');
     throw new SERVER_ERROR('Сервер сейчас упадёт');
   }, 0);
 });

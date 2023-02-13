@@ -64,6 +64,7 @@ function Register({ onRegister }) {
             id="password-registration-input"
             type="password"
             name="password"
+            minLength="8"
             placeholder="Пароль"
             required
           />

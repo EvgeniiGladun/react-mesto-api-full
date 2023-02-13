@@ -270,6 +270,10 @@ function App() {
     setSelectedCard(false);
   };
 
+  const stopPropagation = (evt) => {
+    return evt.stopPropagation();
+  };
+
   return (
     <>
       {loading ? (
@@ -322,20 +326,30 @@ function App() {
                 isOpen={isEditAvatarPopupOpen}
                 btnText={btnFormText}
                 onUpdateAvatar={handleUpdateAvatar}
+                propagation={stopPropagation}
+                onClose={closeAllPopups}
+
+              />
+              <ImagePopup
+                propagation={stopPropagation}
+                card={selectedCard}
                 onClose={closeAllPopups}
               />
-              <ImagePopup card={selectedCard} onClose={closeAllPopups} />
               <EditProfilePopup
                 isOpenEditProfile={isEditProfilePopupOpen}
                 btnText={btnFormText}
                 onUpdateUser={handleUpdateUser}
+                propagation={stopPropagation}
                 onClose={closeAllPopups}
+
               />
               <AddPlacePopup
                 isOpenAddPlace={isAddPlacePopupOpen}
                 btnText={btnFormText}
                 onAddPlace={handleAddPlaceSubmit}
+                propagation={stopPropagation}
                 onClose={closeAllPopups}
+
               />
               <СonfirmationRemovePopup
                 isOpenСonfirmation={isСonfirmationPopupOpen}
@@ -343,6 +357,7 @@ function App() {
                 onCardDelete={handleCardDelete}
                 card={card}
                 onСonfirmationRemove={handleСonfirmationClick}
+
               />
               <Footer />
             </userContex.Provider>

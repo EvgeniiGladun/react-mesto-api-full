@@ -2,7 +2,7 @@
   "name": "mesto",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://photograms.nomoredomainsclub.ru/sign-up",
+  "homepage": "http://photograms.nomoredomainsclub.ru/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

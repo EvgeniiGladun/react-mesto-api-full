@@ -8,13 +8,13 @@ function Card({ card, onCardClick, onCardLike, onCardConfirm }) {
     like: card.likes.length,
     likeId: card.likes || [],
     idCard: card._id,
-    ownerCard: card.owner,
+    ownerCard: card.owner ? card.owner._id || card.owner : undefined,
   };
   const currentUser = React.useContext(userContex);
   // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
   const checkLike = cardTag.likeId.some((cardLike) => cardLike._id === currentUser._id);
   // Определяем, являемся ли мы владельцем текущей карточки
-  const isOwn = cardTag.ownerCard._id === currentUser._id;
+  const isOwn = cardTag.ownerCard === currentUser._id;
 
   // Создаём переменную, которую после зададим в `className` для кнопки лайка
   const cardLikeButtonClassName = `card__rectangle-like ${checkLike ? "card__rectangle-like_active" : "card__rectangle-like"

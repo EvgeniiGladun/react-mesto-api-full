@@ -21,6 +21,7 @@ function EditAvatarPopup(props) {
   return (
     <div onSubmit={handleSubmit}>
       <PopupWithForm
+        propagation={props.propagation}
         isOpen={props.isOpen}
         title="Обновить аватар"
         buttonText={props.btnText}

@@ -22,6 +22,7 @@ function AddPlacePopup(props) {
   return (
     <div onSubmit={handleAddPlaceSubmit}>
       <PopupWithForm
+        propagation={props.propagation}
         isOpen={props.isOpenAddPlace}
         title="Новое место"
         buttonText={props.btnText}
